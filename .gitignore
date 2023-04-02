@@ -1,32 +1,32 @@
-# Prerequisites
-*.d
+using System;
+using System.Collections.Generic;
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter a string: ");
+        string userInput = Console.ReadLine().ToLower();
 
-# Precompiled Headers
-*.gch
-*.pch
+        Dictionary<char, int> letterCount = new Dictionary<char, int>();
+        foreach (char letter in userInput)
+        {
+            if (Char.IsLetter(letter))
+            {
+                if (letterCount.ContainsKey(letter))
+                {
+                    letterCount[letter]++;
+                }
+                else
+                {
+                    letterCount.Add(letter, 1);
+                }
+            }
+        }
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+        foreach (KeyValuePair<char, int> count in letterCount)
+        {
+            Console.WriteLine("{0} - {1}", count.Key, count.Value);
+        }
+    }
+}
